@@ -1,7 +1,7 @@
 # Set Compute Zone
 
 ```
-gcloud config set compute/zone us-central1-a
+gcloud config set compute/zone us-east1-b
 ```
 
 # Create ALLOW ALL Ingress Rule
@@ -18,22 +18,22 @@ gcloud compute firewall-rules create allow-all \
 
 # Create a Static IP to use it as a GCE External IP Address
 ```
-gcloud compute addresses create static-ip --region=us-central1
+gcloud compute addresses create static-ip --region=us-east1
 ```
 
 # Fetch the Static IP 
 ```
-gcloud compute addresses describe static-ip --region=us-central1
+gcloud compute addresses describe static-ip --region=us-east1
 ```
 
 # Create GCE Instance
 ```
-gcloud compute instances create devsecops-cloud --zone=us-central1-a \
-    --image=ubuntu-1804-bionic-v20210514 \
+gcloud compute instances create devsecops-cloud --zone=us-east1-b \
+    --image=ubuntu-1804-bionic-v20230324 \
     --image-project=ubuntu-os-cloud \
     --machine-type=e2-standard-4 \
-    --address=<add-static-ip-from-previous-step> \
+    --address=replace \
     --network-tier=PREMIUM \
-    --boot-disk-size=512GB \
+    --boot-disk-size=50 \
     --tags=allow-all 
 ```
